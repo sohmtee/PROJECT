@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Form 1</title>
+        <link type="text/css" rel="stylesheet" href="bootstrap/css/bootstrap.css">
+        <link href="bootstrap/js/bootstrap.js">
+    </head>
+</html>
+<body>
+  
+<div class="container-fluid">
+    <form method="post">
+        <fieldset>
+            <legend>Report Details</legend>
+    <div class="form-group">
+        <label for="exampleInputward">Ward</label>
+        <input type="text" class="form-control" id="ward" placeholder="Ward">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPollingboth">Polling both</label>
+        <input type="text" class="form-control" id="polling" placeholder="Polling both">
+    </div>
+    <!--
+      <div class="form-group">
+        <label for="exampleInputlga">LGA</label>
+        <input type="text" class="form-control" id="lga" placeholder="LGA">
+      </div>
+    -->
+    <div class="form-group">
+        <label for="exampleInputfraud">Type of fraud</label>
+        <input type="text" class="form-control" id="fraud" placeholder="Type of fraud">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputnotes">Notes</label>
+        <textarea class="form-control" placeholder="Enter notes here..."></textarea> 
+    </div>
+<!--
+    <div class="form-group">
+    <label for="exampleInputstate">State</label>
+    <input type="text" class="form-control" id="notes" placeholder="State">
+  </div>
+-->
+    <select name="states" class="form-group form-control" id="sel_states">
+<!--
+            <option value="State" selected>State</option>
+            <option value="abia">Abia</option>
+            <option value="adamawa">Adamawa</option>
+            <option value="akwa">Akwa Ibom</option>
+            <option value="anambra">Anambra</option>
+            <option value="bauchi">Bauchi</option>
+            <option value="bayelsa">Bayelsa</option>
+            <option value="benue">Benue</option>
+            <option value="Markudi">Borno</option>
+-->
+    </select>
+    <select name="lga" class="form-group form-control" id="sel_lgas">
+    </select>
+    <script>
+        function add_option (select_id, text) {
+            var select = document.getElementById(select_id);
+                select.options[select.options.length] = new Option(text);
+        }
+        function clear_combo (select_id) {
+            var select = document.getElementById(select_id);
+                select.options.length = 0;
+        }
+        function load_combo (select_id, option_array){
+            for (var i = 0; i < option_array.length; i++) {
+                add_option (select_id, option_array[i]);
+            }
+        }
+        var states = new Array ("Select State", "Abia", "Adamawa", "Akwa Ibom", "Anambra","Bauchi", "Bayelsa", "Benue", "Borno", "Cross River", "Delta", "Ebonyi", "Enugu", "Edo", "Ekiti", "Gombe", "Imo", "Jigawa", "Kaduna", "Kano", "Katsina", "Kebbi", "Kogi", "Kwara", "Lagos", "Nasarawa", "Niger", "Ogun", "Ondo", "Osun", "Oyo", "Plateau", "Rivers", "Sokoto", "Taraba", "Yobe", "Zamfara");
+        load_combo ("sel_states", states)
+            
+            
+        var abia_lgas = "Aba North, Aba South," + 
+            "Arochukwu, Bende, Ikwuano, Isiala Ngwa North," +
+            "Isiala Ngwa South, Isikwuato, Obi Ngwa, Ohafia," + 
+            "Osisioma Ngwa, Ugwunagbo, Ukwa East, Ukwa West,"+ 
+            "Umuahia North, Umuahia South, Umu Nneochi";
+        abia_lgas = abia_lgas.split(",");
+        var adamawa_lgas = "Demsa, Fufore, Ganye, Girei," +
+            "Gombi, Guyuk, Hong, Jada, Lamurde, Madagali," +
+            "Maiha, Mayo-Belwa, Michika, Mubi North," +
+            "Mubi South, Numan, Shelleng, Song, Toungo," +
+            "Yola North, Yola South,";
+        adamawa_lgas = adamawa_lgas.split(",");
+        document.getElementById('sel_states').onclick = sel_states_onchange;
+            function sel_states_onchange () {
+                var sel_states = document.getElementById("sel_states");
+                clear_combo ("sel_lgas")
+                switch (sel_states.selectedIndex){
+                    case 1: // Abia
+                        load_combo ("sel_lgas", abia_lgas);
+                        break;
+                    case 2: //Adamawa
+                        load_combo ("sel_lgas", adamawa_lgas);
+                        break;
+                }
+            }
+            
+        </script>
+  <div class="form-group">
+    <label for="exampleInputFile">Upload of evidence</label>
+    <input type="file" id="exampleInputFile">
+    <p class="help-block">Upload of evidence</p>
+  </div>
+    <div class="form-group">
+    <label for="exampleInputcontact">Contact Details</label>
+    <input type="text" class="form-control" id="contact" placeholder="Contact Details">
+  </div>
+  <div class="checkbox">
+    <label>
+      <input type="checkbox"> Check me out
+    </label>
+  </div>
+  <button type="submit" class="btn btn-danger">Submit</button>
+    </fieldset>
+</form>
+    </div>
+</body>
